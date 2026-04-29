@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PYTHON = "py"
+        STREAMLIT_BROWSER_GATHER_USAGE_STATS = "false"
     }
 
     stages {
