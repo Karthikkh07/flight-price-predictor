@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PYTHON = "py"
+        STREAMLIT_BROWSER_GATHER_USAGE_STATS = "false"
     }
 
     stages {
@@ -20,9 +21,11 @@ pipeline {
                 echo "Starting Streamlit app..."
 
                 bat '''
-                set STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
-                set STREAMLIT_SERVER_HEADLESS=true
-                py -m streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+                %PYTHON% -m streamlit run app.py ^
+                --server.port 8501 ^
+                --server.address 0.0.0.0 ^
+                --server.headless true ^
+                --browser.gatherUsageStats false
                 '''
             }
         }
